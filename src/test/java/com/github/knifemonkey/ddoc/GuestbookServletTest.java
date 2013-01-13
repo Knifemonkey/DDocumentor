@@ -38,39 +38,39 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GuestbookServletTest {
 
-  private GuestbookServlet ddocumentorServlet;
+    private GuestbookServlet ddocumentorServlet;
 
-  private final LocalServiceTestHelper helper =
-      new LocalServiceTestHelper(new LocalUserServiceTestConfig())
-          .setEnvIsLoggedIn(true)
-          .setEnvAuthDomain("localhost")
-          .setEnvEmail("test@localhost");
+    private final LocalServiceTestHelper helper =
+            new LocalServiceTestHelper(new LocalUserServiceTestConfig())
+                    .setEnvIsLoggedIn(true)
+                    .setEnvAuthDomain("localhost")
+                    .setEnvEmail("test@localhost");
 
-  @Before
-  public void setupGuestBookServlet() {
-    helper.setUp();
-    ddocumentorServlet = new GuestbookServlet();
-  }
+    @Before
+    public void setupGuestBookServlet() {
+        helper.setUp();
+        ddocumentorServlet = new GuestbookServlet();
+    }
 
-  @After
-  public void tearDownHelper() {
-    helper.tearDown();
-  }
+    @After
+    public void tearDownHelper() {
+        helper.tearDown();
+    }
 
-  @Test
-  public void testDoGet() throws IOException {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
+    @Test
+    public void testDoGet() throws IOException {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
 
-    StringWriter stringWriter = new StringWriter();
+        StringWriter stringWriter = new StringWriter();
 
-    when(response.getWriter()).thenReturn(new PrintWriter(stringWriter));
+        when(response.getWriter()).thenReturn(new PrintWriter(stringWriter));
 
-    ddocumentorServlet.doGet(request, response);
+        ddocumentorServlet.doGet(request, response);
 
-    User currentUser = UserServiceFactory.getUserService().getCurrentUser();
+        User currentUser = UserServiceFactory.getUserService().getCurrentUser();
 
-    assertEquals("Hello, " + currentUser.getNickname() + "\n", stringWriter.toString());
-  }
+        assertEquals("Hello, " + currentUser.getNickname() + "\n", stringWriter.toString());
+    }
 
 }

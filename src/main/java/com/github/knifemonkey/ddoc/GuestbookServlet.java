@@ -27,18 +27,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GuestbookServlet extends HttpServlet {
-  @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
 
-    UserService userService = UserServiceFactory.getUserService();
-    User currentUser = userService.getCurrentUser();
+        UserService userService = UserServiceFactory.getUserService();
+        User currentUser = userService.getCurrentUser();
 
-    if (currentUser != null) {
-      resp.setContentType("text/plain");
-      resp.getWriter().println("Hello, " + currentUser.getNickname());
-    } else {
-      resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
+        if (currentUser != null) {
+            resp.setContentType("text/plain");
+            resp.getWriter().println("Hello, " + currentUser.getNickname());
+        } else {
+            resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));
+        }
     }
-  }
 }

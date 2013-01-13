@@ -43,56 +43,56 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SignGuestbookServletTest {
 
-  private SignGuestbookServlet signGuestbookServlet;
+    private SignGuestbookServlet signGuestbookServlet;
 
-  private final LocalServiceTestHelper helper =
-      new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig())
-          .setEnvIsLoggedIn(true)
-          .setEnvAuthDomain("localhost")
-          .setEnvEmail("test@localhost");
+    private final LocalServiceTestHelper helper =
+            new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig())
+                    .setEnvIsLoggedIn(true)
+                    .setEnvAuthDomain("localhost")
+                    .setEnvEmail("test@localhost");
 
-  @Before
-  public void setupSignGuestBookServlet() {
-    helper.setUp();
-    signGuestbookServlet = new SignGuestbookServlet();
-  }
+    @Before
+    public void setupSignGuestBookServlet() {
+        helper.setUp();
+        signGuestbookServlet = new SignGuestbookServlet();
+    }
 
-  @After
-  public void tearDownHelper() {
-    helper.tearDown();
-  }
+    @After
+    public void tearDownHelper() {
+        helper.tearDown();
+    }
 
-  @Test
-  public void testDoPost() throws IOException, EntityNotFoundException {
-    HttpServletRequest request = mock(HttpServletRequest.class);
-    HttpServletResponse response = mock(HttpServletResponse.class);
+    @Test
+    public void testDoPost() throws IOException, EntityNotFoundException {
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        HttpServletResponse response = mock(HttpServletResponse.class);
 
-    String ddocumentorName = "TestGuestbook";
-    String testContent = "Test Content";
+        String ddocumentorName = "TestGuestbook";
+        String testContent = "Test Content";
 
-    when(request.getParameter("ddocumentorName")).thenReturn(ddocumentorName);
-    when(request.getParameter("content")).thenReturn(testContent);
+        when(request.getParameter("ddocumentorName")).thenReturn(ddocumentorName);
+        when(request.getParameter("content")).thenReturn(testContent);
 
-    Date priorToRequest = new Date();
+        Date priorToRequest = new Date();
 
-    signGuestbookServlet.doPost(request, response);
+        signGuestbookServlet.doPost(request, response);
 
-    Date afterRequest = new Date();
+        Date afterRequest = new Date();
 
-    verify(response).sendRedirect("/ddocumentor.jsp?ddocumentorName=TestGuestbook");
+        verify(response).sendRedirect("/ddocumentor.jsp?ddocumentorName=TestGuestbook");
 
-    User currentUser = UserServiceFactory.getUserService().getCurrentUser();
+        User currentUser = UserServiceFactory.getUserService().getCurrentUser();
 
-    Entity greeting = DatastoreServiceFactory.getDatastoreService().prepare(new Query()).asSingleEntity();
+        Entity greeting = DatastoreServiceFactory.getDatastoreService().prepare(new Query()).asSingleEntity();
 
-    assertEquals(ddocumentorName, greeting.getKey().getParent().getName());
-    assertEquals(testContent, greeting.getProperty("content"));
-    assertEquals(currentUser, greeting.getProperty("user"));
+        assertEquals(ddocumentorName, greeting.getKey().getParent().getName());
+        assertEquals(testContent, greeting.getProperty("content"));
+        assertEquals(currentUser, greeting.getProperty("user"));
 
-    Date date = (Date) greeting.getProperty("date");
-    assertTrue("The date in the entity [" + date + "] is prior to the request being performed",
-        priorToRequest.before(date) || priorToRequest.equals(date));
-    assertTrue("The date in the entity [" + date + "] is after to the request completed",
-        afterRequest.after(date) || afterRequest.equals(date));
-  }
+        Date date = (Date) greeting.getProperty("date");
+        assertTrue("The date in the entity [" + date + "] is prior to the request being performed",
+                priorToRequest.before(date) || priorToRequest.equals(date));
+        assertTrue("The date in the entity [" + date + "] is after to the request completed",
+                afterRequest.after(date) || afterRequest.equals(date));
+    }
 }

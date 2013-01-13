@@ -33,24 +33,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SignGuestbookServlet extends HttpServlet {
-  @Override
-  public void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
-    User user = userService.getCurrentUser();
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
 
-    String ddocumentorName = req.getParameter("ddocumentorName");
-    Key ddocumentorKey = KeyFactory.createKey("Guestbook", ddocumentorName);
-    String content = req.getParameter("content");
-    Date date = new Date();
-    Entity greeting = new Entity("Greeting", ddocumentorKey);
-    greeting.setProperty("user", user);
-    greeting.setProperty("date", date);
-    greeting.setProperty("content", content);
+        String ddocumentorName = req.getParameter("ddocumentorName");
+        Key ddocumentorKey = KeyFactory.createKey("Guestbook", ddocumentorName);
+        String content = req.getParameter("content");
+        Date date = new Date();
+        Entity greeting = new Entity("Greeting", ddocumentorKey);
+        greeting.setProperty("user", user);
+        greeting.setProperty("date", date);
+        greeting.setProperty("content", content);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(greeting);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(greeting);
 
-    resp.sendRedirect("/ddocumentor.jsp?ddocumentorName=" + ddocumentorName);
-  }
+        resp.sendRedirect("/ddocumentor.jsp?ddocumentorName=" + ddocumentorName);
+    }
 }
