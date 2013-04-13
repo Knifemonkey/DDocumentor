@@ -10,7 +10,7 @@ public class GuestbookServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-
+    String a ="";
 
     }
 }
