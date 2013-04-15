@@ -1,10 +1,9 @@
 package org.ddocumentor;
 
-import java.io.IOException;
 
 public class Convert {
 	
-	public String convert(String s) throws IOException{
+	public String convert(String s){
 		String startDelimiter = "#DocStart";
 		int codeDocStart = s.indexOf(startDelimiter)+startDelimiter.length();
 		int codeDocEnd = s.indexOf("#DocEnd")-2;
