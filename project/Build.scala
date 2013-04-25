@@ -13,7 +13,9 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
     "info.bliki.wiki" % "bliki-core" % "3.0.19",
-    "net.sourceforge.jwebunit" % "jwebunit-htmlunit-plugin" % "3.1" % "test"
+    "net.sourceforge.jwebunit" % "jwebunit-htmlunit-plugin" % "3.1" % "test",
+    "com.google.inject" % "guice" % "3.0",
+    "javax.inject" % "javax.inject" % "1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
