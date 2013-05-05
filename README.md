@@ -1,8 +1,11 @@
-This is your new Play 2.1 application
+DDocumentor
 =====================================
 
-This file will be packaged with your application, when using `play dist`.
+Projects that aims to create application that can generate documentation given specific markup from your sources files
+that are in VCS repository.
 
+
+This file will be packaged with your application, when using `play dist`.
 
 Useful commands
 ----------
