@@ -1,5 +1,7 @@
 package org.ddocumentor;
 
+import org.ddocumentor.source.JavaSource;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

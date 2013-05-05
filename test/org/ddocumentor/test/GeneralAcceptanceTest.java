@@ -3,16 +3,12 @@ package org.ddocumentor.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
 
 import org.ddocumentor.Convert;
 import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.ParsedDocumentation;
+import org.ddocumentor.docs.ParsedDocument;
 import org.junit.Test;
 
 public class GeneralAcceptanceTest {
@@ -22,7 +18,7 @@ public class GeneralAcceptanceTest {
         InputStream sourceFile = getSourceFileContents();
         String resultFile = new FileJavaSourceAdapter(getResultFile()).getContent();
 
-        ParsedDocumentation convert = new Convert().convert(new FileJavaSourceAdapter(sourceFile));
+        ParsedDocument convert = new Convert().convert(new FileJavaSourceAdapter(sourceFile));
         String convertedSourceFile = convert.getMarkup();
 
         System.out.println(convertedSourceFile);

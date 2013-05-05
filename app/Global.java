@@ -1,4 +1,6 @@
-import org.ddocumentor.GuiceModule;
+import org.ddocumentor.CoreDocModule;
+import org.ddocumentor.docs.DocModule;
+import org.ddocumentor.system.SystemModule;
 import play.GlobalSettings;
 
 import com.google.inject.Guice;
@@ -14,7 +16,7 @@ public class Global extends GlobalSettings {
     }
 
     private static Injector createInjector() {
-        return Guice.createInjector(new GuiceModule());
+        return Guice.createInjector(new CoreDocModule(), new SystemModule(), new DocModule());
     }
 
 }

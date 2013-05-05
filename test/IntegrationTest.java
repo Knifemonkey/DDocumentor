@@ -10,7 +10,7 @@ import static org.fest.assertions.Assertions.*;
 import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class IntegrationTest {
-    private static final String OUTPUT_DOCUMENTATION = "System.out.println(\"Hello Doc Start!\");";
+    private static final String OUTPUT_DOCUMENTATION = "my long markup for project";
 
     /**
      * add your integration test here
@@ -18,10 +18,12 @@ public class IntegrationTest {
      */
     @Test
     public void testShouldContainDocumentationOutput() {
-        running(testServer(3333, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+        running(testServer(3333, fakeApplication(inMemoryDatabase())), FIREFOX, new Callback<TestBrowser>() {
             public void invoke(TestBrowser browser) {
                 browser.goTo("http://localhost:3333");
                 assertThat(browser.findFirst("#documentation").getText()).contains(OUTPUT_DOCUMENTATION);
+                assertThat(browser.findFirst("#sidebar-navigation").getText()).contains("mockName1");
+                assertThat(browser.findFirst("#sidebar-navigation").getText()).contains("mockName2");
             }
         });
     }
