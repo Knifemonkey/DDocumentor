@@ -1,17 +1,28 @@
 package controllers;
 
-import org.ddocumentor.Convert;
-import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.docs.*;
-import play.*;
-import play.mvc.*;
-
-import views.html.*;
-
-import javax.inject.Inject;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import javax.inject.Inject;
+
+import org.ddocumentor.Convert;
+import org.ddocumentor.FileJavaSourceAdapter;
+import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.DocumentRepository;
+import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.Project;
+import org.ddocumentor.docs.ProjectFactory;
+import org.ddocumentor.source.ParsedDocumentManager;
+
+import play.Play;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
+import views.html.defaultpages.error;
 
 public class Application extends Controller {
 
@@ -23,17 +34,30 @@ public class Application extends Controller {
     private DocumentRepository documentRepository;
 
     public Result index() {
+    	
+    	try (
+    			InputStream inputStream = 
+    				Play.application().resourceAsStream("/public/examples/SourceFile.java");
+    	     
+    			BufferedReader bufferedReader = 
+    	    		 new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
+    		
+            ParsedDocumentManager parsedDocumentManager = new FileJavaSourceAdapter();            
+            ParsedDocument parsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
 
-        InputStream inputStream = Play.application().resourceAsStream("/public/examples/SourceFile.java");
-
-        FileJavaSourceAdapter javaSource = new FileJavaSourceAdapter(inputStream);
-        ParsedDocument parsedDocument = convert.convert(javaSource);
-
-        Project project = prepareProject();
-        ParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(project.getFirstDocument());
+            Project project = prepareProject();
+            
+            //TODO Pick documents from project
+            //ParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(project.getFirstDocument());
 
 
-        return ok(index.render(project, oneByProjectDocument));
+            return ok(index.render(project, parsedDocument));    		
+    		
+    	} catch (IOException ioe) {
+    		
+    		return ok(error.render(null));   
+    	}
+
 
     }
 

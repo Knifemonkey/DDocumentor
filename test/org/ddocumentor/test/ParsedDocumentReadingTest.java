@@ -32,7 +32,7 @@ public class ParsedDocumentReadingTest {
         ParsedDocument parsedDocument = documentRepository.findOneByProjectDocument(firstDocument);
 
         assertThat(parsedDocument.getTitle(), not(isEmptyOrNullString()));
-        assertThat(parsedDocument.getMarkup(), not(isEmptyOrNullString()));
+        assertThat(parsedDocument.getDocumentParts().get(0), not(isEmptyOrNullString()));
     }
 
 

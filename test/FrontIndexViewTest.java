@@ -43,6 +43,11 @@ public class FrontIndexViewTest {
         assertThat(contentAsString(html)).contains("mockProject");
         assertThat(contentAsString(html)).contains("titleFirst");
         assertThat(contentAsString(html)).contains("titleSecond");
+        
+
+        assertThat(contentAsString(html)).contains("Hello Doc Start!");
+        assertThat(contentAsString(html)).contains("Hello Doc Start2!");
+        assertThat(contentAsString(html)).contains("Hello Doc Start3!");
     }
 
 

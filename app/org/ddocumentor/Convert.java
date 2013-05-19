@@ -2,12 +2,13 @@ package org.ddocumentor;
 
 
 import org.ddocumentor.docs.ParsedDocument;
-import org.ddocumentor.source.JavaSource;
 
 public class Convert {
 
-    public ParsedDocument convert(JavaSource javaSource) {
-        String s = javaSource.getContent();
+    public ParsedDocument convert(ParsedDocument javaSource) {
+    	
+    	//TODO getParts and prettify them
+        /*List<String> javaSourceParts = javaSource.getContent();
 
         String startDelimiter = "#DocStart";
         int codeDocStart = s.indexOf(startDelimiter) + startDelimiter.length();
@@ -16,6 +17,8 @@ public class Convert {
 
         String prettified = new Prettify().prettify(codeExample.toString());
         return new ParsedDocument("default", prettified);
+        */
+    	return null;
     }
 
 }

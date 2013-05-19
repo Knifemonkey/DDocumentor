@@ -1,20 +1,39 @@
 package org.ddocumentor.docs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParsedDocument {
 
-    private final String title;
-    private final String markup;
-
-    public ParsedDocument(String title, String markup) {
-        this.title = title;
-        this.markup = markup;
+	private String title;
+    private List<String> documentParts = new ArrayList<>();
+      
+    public ParsedDocument() {    	
     }
+    
+    public ParsedDocument(String title) {
+        this.title = title;
+    }
+    
+    public ParsedDocument(String title, List<String> documentParts) {
+        this.title = title;
+        this.documentParts = documentParts;
+    }    
 
-    public String getTitle() {
+	public String getTitle() {
         return title;
     }
 
-    public String getMarkup() {
-        return markup;
-    }
+	public List<String> getDocumentParts() {
+		return documentParts;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+    public void setDocumentParts(List<String> documentParts) {
+		this.documentParts = documentParts;
+	}	
+
 }

@@ -3,27 +3,38 @@ package org.ddocumentor.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.ddocumentor.Convert;
 import org.ddocumentor.FileJavaSourceAdapter;
 import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.source.ParsedDocumentManager;
 import org.junit.Test;
 
 public class GeneralAcceptanceTest {
 
     @Test
     public void convertSourceCodeToHTML() throws IOException {
+
         InputStream sourceFile = getSourceFileContents();
-        String resultFile = new FileJavaSourceAdapter(getResultFile()).getContent();
+        BufferedReader bufferedReader = 
+	    		 new BufferedReader(new InputStreamReader(sourceFile, "UTF-8"));    
+        
+        ParsedDocumentManager parsedDocumentManager = new FileJavaSourceAdapter();            
+        ParsedDocument parsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
+        
+        String part1 = parsedDocument.getDocumentParts().get(0);
 
-        ParsedDocument convert = new Convert().convert(new FileJavaSourceAdapter(sourceFile));
-        String convertedSourceFile = convert.getMarkup();
+        //ParsedDocument convert = new Convert().convert(new FileJavaSourceAdapter(sourceFile));
+        //String convertedSourceFile = convert.getMarkup();
 
-        System.out.println(convertedSourceFile);
+        //System.out.println(convertedSourceFile);
 
-        assertThat(convertedSourceFile, is(resultFile));
+        //TODO update to new output
+        assertThat(part1, is(getResultFile().toString()));
 
 
     }

@@ -26,8 +26,11 @@
             <h2>@document.getTitle()</h2>
 
             <div id="documentation">
-                @Html(document.getMarkup())
-            </div>
+             @for(docPart <- document.getDocumentParts()) {
+                 <li><a href="#">@docPart</a></li>
+             }
+             </div>
+             
         </div>
         <!--/span-->
     </div>
