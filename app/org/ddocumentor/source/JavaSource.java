@@ -1,7 +1,17 @@
 package org.ddocumentor.source;
 
-import java.io.Reader;
 
-public interface JavaSource {
-    Reader getContent();
+
+public class JavaSource {
+    
+	private String content;
+	
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 }

@@ -3,21 +3,25 @@ package org.ddocumentor.source;
 import java.util.List;
 
 public class ParsedJavaSource {
+	
+	private String title;
+	List<String> documentParts;
+	
 
-    public ParsedJavaSource(String title, List<String> doc1Parts) {
-        throw new UnsupportedOperationException();
+    public ParsedJavaSource(String title, List<String> documentParts) {
+        this.title = title; 
     }
 
     public List<String> getParts() {
-        throw new UnsupportedOperationException();
+       return this.documentParts;
     }
 
     public String getTitle() {
-        throw new UnsupportedOperationException();
+        return this.title;
     }
 
 
     public List<String> getDocumentParts() {
-        throw new UnsupportedOperationException();
+        return this.documentParts;
     }
 }

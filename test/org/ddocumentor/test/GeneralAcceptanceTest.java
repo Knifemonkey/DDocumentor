@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 import org.ddocumentor.source.FileJavaSourceAdapter;
 import org.ddocumentor.source.JavaSource;
-import org.ddocumentor.source.JavaSourceParser;
+import org.ddocumentor.source.JavaSourceParserImpl;
 import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class GeneralAcceptanceTest {
 
 
         JavaSource javaSource = new FileJavaSourceAdapter();
-        ParsedJavaSource parsedJavaSource = new JavaSourceParser().parseJavaSource(javaSource);
+        ParsedJavaSource parsedJavaSource = new JavaSourceParserImpl().parseJavaSource(javaSource);
 
 
 
