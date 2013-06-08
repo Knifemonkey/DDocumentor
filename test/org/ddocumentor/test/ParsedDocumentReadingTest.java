@@ -1,9 +1,9 @@
 package org.ddocumentor.test;
 
 import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
 import org.ddocumentor.docs.DocumentRepository;
-import org.ddocumentor.docs.ParsedDocument;
 import org.junit.Test;
 
 import java.util.List;
@@ -17,9 +17,9 @@ public class ParsedDocumentReadingTest {
         Project project = StubObjects.prepareProject();
         DocumentRepository documentRepository = StubObjects.prepareDocumentRepository();
 
-        List<ParsedDocument> parsedDocuments = documentRepository.findAllByProject(project);
+        List<HtmlParsedDocument> htmlParsedDocuments = documentRepository.findAllByProject(project);
 
-        assertThat(parsedDocuments, not(hasSize(0)));
+        assertThat(htmlParsedDocuments, not(hasSize(0)));
     }
 
 
@@ -29,10 +29,10 @@ public class ParsedDocumentReadingTest {
         Document firstDocument = project.getFirstDocument();
         DocumentRepository documentRepository = StubObjects.prepareDocumentRepository();
 
-        ParsedDocument parsedDocument = documentRepository.findOneByProjectDocument(firstDocument);
+        HtmlParsedDocument htmlParsedDocument = documentRepository.findOneByProjectDocument(firstDocument);
 
-        assertThat(parsedDocument.getTitle(), not(isEmptyOrNullString()));
-        assertThat(parsedDocument.getDocumentParts().get(0), not(isEmptyOrNullString()));
+        assertThat(htmlParsedDocument.getTitle(), not(isEmptyOrNullString()));
+        assertThat(htmlParsedDocument.getDocumentParts().get(0), not(isEmptyOrNullString()));
     }
 
 

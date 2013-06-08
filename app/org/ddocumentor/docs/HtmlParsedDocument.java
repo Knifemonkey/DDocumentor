@@ -3,19 +3,19 @@ package org.ddocumentor.docs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParsedDocument {
+public class HtmlParsedDocument {
 
 	private String title;
     private List<String> documentParts = new ArrayList<>();
       
-    public ParsedDocument() {    	
+    public HtmlParsedDocument() {
     }
     
-    public ParsedDocument(String title) {
+    public HtmlParsedDocument(String title) {
         this.title = title;
     }
     
-    public ParsedDocument(String title, List<String> documentParts) {
+    public HtmlParsedDocument(String title, List<String> documentParts) {
         this.title = title;
         this.documentParts = documentParts;
     }    

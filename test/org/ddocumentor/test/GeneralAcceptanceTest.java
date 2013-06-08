@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.ddocumentor.Convert;
 import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.source.ParsedDocumentManager;
 import org.junit.Test;
 
@@ -22,11 +21,14 @@ public class GeneralAcceptanceTest {
         InputStream sourceFile = getSourceFileContents();
         BufferedReader bufferedReader = 
 	    		 new BufferedReader(new InputStreamReader(sourceFile, "UTF-8"));    
-        
+
+
         ParsedDocumentManager parsedDocumentManager = new FileJavaSourceAdapter();            
-        ParsedDocument parsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
-        
-        String part1 = parsedDocument.getDocumentParts().get(0);
+        HtmlParsedDocument htmlParsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
+
+
+
+        String part1 = htmlParsedDocument.getDocumentParts().get(0);
 
         //ParsedDocument convert = new Convert().convert(new FileJavaSourceAdapter(sourceFile));
         //String convertedSourceFile = convert.getMarkup();

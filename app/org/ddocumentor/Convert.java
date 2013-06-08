@@ -1,11 +1,11 @@
 package org.ddocumentor;
 
 
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 
 public class Convert {
 
-    public ParsedDocument convert(ParsedDocument javaSource) {
+    public HtmlParsedDocument convert(HtmlParsedDocument javaSource) {
     	
     	//TODO getParts and prettify them
         /*List<String> javaSourceParts = javaSource.getContent();

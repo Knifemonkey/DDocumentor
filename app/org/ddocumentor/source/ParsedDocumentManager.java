@@ -4,15 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 
 public interface ParsedDocumentManager {
 	
 
-	ParsedDocument parseJavaSource(BufferedReader javaSourceReader) 
+	HtmlParsedDocument parseJavaSource(BufferedReader javaSourceReader)
 			throws IOException;	
 
-	List<String> getParts(ParsedDocument parsedDocument);
+	List<String> getParts(HtmlParsedDocument htmlParsedDocument);
 
 	
 }

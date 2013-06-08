@@ -13,7 +13,7 @@ import org.ddocumentor.Convert;
 import org.ddocumentor.FileJavaSourceAdapter;
 import org.ddocumentor.docs.Document;
 import org.ddocumentor.docs.DocumentRepository;
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
 import org.ddocumentor.docs.ProjectFactory;
 import org.ddocumentor.source.ParsedDocumentManager;
@@ -43,7 +43,7 @@ public class Application extends Controller {
     	    		 new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
     		
             ParsedDocumentManager parsedDocumentManager = new FileJavaSourceAdapter();            
-            ParsedDocument parsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
+            HtmlParsedDocument htmlParsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
 
             Project project = prepareProject();
             
@@ -51,7 +51,7 @@ public class Application extends Controller {
             //ParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(project.getFirstDocument());
 
 
-            return ok(index.render(project, parsedDocument));    		
+            return ok(index.render(project, htmlParsedDocument));
     		
     	} catch (IOException ioe) {
     		

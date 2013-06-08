@@ -2,9 +2,9 @@ package org.ddocumentor.system;
 
 import com.google.common.collect.Lists;
 import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
 import org.ddocumentor.docs.DocumentRepository;
-import org.ddocumentor.docs.ParsedDocument;
 
 import javax.inject.Singleton;
 
@@ -15,8 +15,8 @@ import java.util.List;
 public class MockDocumentRepository implements DocumentRepository {
 
     @Override
-    public List<ParsedDocument> findAllByProject(Project project) {
-        List<ParsedDocument> lists = Lists.newArrayList();
+    public List<HtmlParsedDocument> findAllByProject(Project project) {
+        List<HtmlParsedDocument> lists = Lists.newArrayList();
 
         String doc1Part1 = "<b>my markup</b>";
         String doc2Part1 = "<b>my second markup</b>";
@@ -27,19 +27,19 @@ public class MockDocumentRepository implements DocumentRepository {
         List<String> doc2Parts = new ArrayList<>();
         doc2Parts.add(doc2Part1);
         
-        lists.add(new ParsedDocument("doc1", doc1Parts));
-        lists.add(new ParsedDocument("doc2", doc2Parts));
+        lists.add(new HtmlParsedDocument("doc1", doc1Parts));
+        lists.add(new HtmlParsedDocument("doc2", doc2Parts));
 
         return lists;
     }
 
     @Override
-    public ParsedDocument findOneByProjectDocument(Document firstDocument) {
+    public HtmlParsedDocument findOneByProjectDocument(Document firstDocument) {
     	
         List<String> doc1Parts = new ArrayList<>();        
         doc1Parts.add("<b>my long markup for project</b>");
         
-        return new ParsedDocument("parsedByProjectDocument", doc1Parts);
+        return new HtmlParsedDocument("parsedByProjectDocument", doc1Parts);
     }
 
 }

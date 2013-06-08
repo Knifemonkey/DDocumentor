@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.source.ParsedDocumentManager;
 
 public class FileJavaSourceAdapter implements ParsedDocumentManager {
@@ -35,29 +35,29 @@ public class FileJavaSourceAdapter implements ParsedDocumentManager {
     */
 
 	@Override
-	public ParsedDocument parseJavaSource(BufferedReader javaSourceReader) 
+	public HtmlParsedDocument parseJavaSource(BufferedReader javaSourceReader)
 			throws IOException {
 		
-		ParsedDocument parsedDocument = new ParsedDocument();				
+		HtmlParsedDocument htmlParsedDocument = new HtmlParsedDocument();
 					
-		String javaSourceString = parseSimpleTags(javaSourceReader, parsedDocument);
+		String javaSourceString = parseSimpleTags(javaSourceReader, htmlParsedDocument);
 						
-		parseComplexTags(parsedDocument, javaSourceString);
+		parseComplexTags(htmlParsedDocument, javaSourceString);
 
-		return parsedDocument;
+		return htmlParsedDocument;
 	}
 
-	private void parseComplexTags(ParsedDocument parsedDocument,
+	private void parseComplexTags(HtmlParsedDocument htmlParsedDocument,
 			String javaSourceString) {
 		String[] documentParts = 
 				StringUtils.substringsBetween(javaSourceString, "#DocStart", "#DocEnd");
 		
 		for (String markup : documentParts) {
-			parsedDocument.getDocumentParts().add(markup);
+			htmlParsedDocument.getDocumentParts().add(markup);
 		}
 	}
 
-	private String parseSimpleTags(BufferedReader javaSourceReader, ParsedDocument parsedDocument) 
+	private String parseSimpleTags(BufferedReader javaSourceReader, HtmlParsedDocument htmlParsedDocument)
 			throws IOException {
 		
 		StringBuilder javaSourceSB = new StringBuilder(); 
@@ -67,7 +67,7 @@ public class FileJavaSourceAdapter implements ParsedDocumentManager {
 			
 			line = javaSourceReader.readLine();
 			
-			parseTitle(line, parsedDocument);
+			parseTitle(line, htmlParsedDocument);
 			
 			javaSourceSB.append(line);
 			
@@ -76,15 +76,15 @@ public class FileJavaSourceAdapter implements ParsedDocumentManager {
 		return javaSourceSB.toString();
 	}
 
-	private void parseTitle(String line, ParsedDocument parsedDocument) {
+	private void parseTitle(String line, HtmlParsedDocument htmlParsedDocument) {
 		if ((line != null) && line.contains("#DocTitle")) {
-			parsedDocument.setTitle(StringUtils.substringAfter(line, "#DocTitle"));
+			htmlParsedDocument.setTitle(StringUtils.substringAfter(line, "#DocTitle"));
 		}
 	}
 
 	@Override
-	public List<String> getParts(ParsedDocument parsedDocument) {		
-		return parsedDocument.getDocumentParts();
+	public List<String> getParts(HtmlParsedDocument htmlParsedDocument) {
+		return htmlParsedDocument.getDocumentParts();
 	}
 
 }

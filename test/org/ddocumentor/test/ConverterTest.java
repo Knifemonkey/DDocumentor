@@ -1,6 +1,6 @@
 package org.ddocumentor.test;
 
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.junit.Test;
 
 public class ConverterTest {
@@ -20,7 +20,7 @@ public class ConverterTest {
 		*/
 	}
 
-	private ParsedDocument prepareJavaSourceWithMultipleBlocks() {
+	private HtmlParsedDocument prepareJavaSourceWithMultipleBlocks() {
 		// TODO Auto-generated method stub
 		return null;
 	}

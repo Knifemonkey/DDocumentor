@@ -1,23 +1,10 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.codehaus.jackson.JsonNode;
 import org.ddocumentor.docs.Document;
 import org.ddocumentor.docs.DocumentRepository;
-import org.ddocumentor.docs.ParsedDocument;
+import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
 import org.junit.*;
 
 import play.mvc.*;
-import play.test.*;
-import play.data.DynamicForm;
-import play.data.validation.ValidationError;
-import play.data.validation.Constraints.RequiredValidator;
-import play.i18n.Lang;
-import play.libs.F;
-import play.libs.F.*;
 
 import static org.ddocumentor.test.StubObjects.*;
 import static play.test.Helpers.*;
@@ -36,7 +23,7 @@ public class FrontIndexViewTest {
         DocumentRepository documentRepository = prepareDocumentRepository();
 
         Document firstDocument = project.getFirstDocument();
-        ParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(firstDocument);
+        HtmlParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(firstDocument);
 
         Content html = views.html.index.render(project, oneByProjectDocument);
         assertThat(contentType(html)).isEqualTo("text/html");
