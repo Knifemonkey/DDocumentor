@@ -1,5 +1,6 @@
 package org.ddocumentor.test;
 
+import static org.ddocumentor.testing.Asserts.partsHaveHtml;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -7,11 +8,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
+import org.ddocumentor.html.HtmlConverter;
+import org.ddocumentor.html.HtmlParsedDocument;
+import org.ddocumentor.project.Project;
 import org.ddocumentor.source.FileJavaSourceAdapter;
 import org.ddocumentor.source.JavaSource;
-import org.ddocumentor.source.JavaSourceParserImpl;
+import org.ddocumentor.source.JavaSourceParser;
 import org.ddocumentor.source.ParsedJavaSource;
+import org.hamcrest.Matcher;
 import org.junit.Test;
 
 public class GeneralAcceptanceTest {
@@ -20,34 +26,14 @@ public class GeneralAcceptanceTest {
     public void convertSourceCodeToHTML() throws IOException {
 
         InputStream sourceFile = getSourceFileContents();
-        BufferedReader bufferedReader = 
-	    		 new BufferedReader(new InputStreamReader(sourceFile, "UTF-8"));    
 
 
-        JavaSource javaSource = new FileJavaSourceAdapter();
-        ParsedJavaSource parsedJavaSource = new JavaSourceParserImpl().parseJavaSource(javaSource);
+        JavaSource javaSource = new FileJavaSourceAdapter(sourceFile);
+        ParsedJavaSource parsedJavaSource = new JavaSourceParser().parseJavaSource(javaSource);
 
-
-
-//        String part1 = .getDocumentParts().get(0);
-
-        //ParsedDocument convert = new Convert().convert(new FileJavaSourceAdapter(sourceFile));
-        //String convertedSourceFile = convert.getMarkup();
-
-        //System.out.println(convertedSourceFile);
-
-        //TODO update to new output
-//        assertThat(part1, is(getResultFile().toString()));
-
-
-    }
-
-    private InputStream getResultFile() throws IOException {
-        String fileName = "/outputHTML.html";
-
-        InputStream resourceAsStream = GeneralAcceptanceTest.class.getResourceAsStream(fileName);
-        return resourceAsStream;
-
+        HtmlParsedDocument htmlParsedDocument = new HtmlConverter().convert(parsedJavaSource);
+        assertThat(htmlParsedDocument.getTitle(), is("My title"));
+        assertThat(htmlParsedDocument.getDocumentParts(), partsHaveHtml());
     }
 
     private InputStream getSourceFileContents() throws IOException {

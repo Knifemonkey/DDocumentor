@@ -1,6 +1,8 @@
 package org.ddocumentor.html;
 
 
+import info.bliki.wiki.tags.code.JavaCodeFilter;
+import info.bliki.wiki.tags.code.SourceCodeFormatter;
 import org.ddocumentor.source.ParsedJavaSource;
 
 public class HtmlConverter {
@@ -22,6 +24,30 @@ public class HtmlConverter {
 //    }
 
     public HtmlParsedDocument convert(ParsedJavaSource parsedJavaSource) {
-        throw new UnsupportedOperationException();
+
+        HtmlParsedDocument htmlParsedDocument = new HtmlParsedDocument();
+        htmlParsedDocument.setTitle(parsedJavaSource.getTitle());
+
+        for (String code : parsedJavaSource.getDocumentParts()) {
+            String result = prettify(code);
+            result = wrapWithPre(result);
+            htmlParsedDocument.addPart(result);
+        }
+
+        return htmlParsedDocument;
+    }
+
+    private String prettify(String javaCode) {
+        String result;
+        SourceCodeFormatter f = new JavaCodeFilter();
+        result = f.filter(javaCode);
+        return result;
+    }
+
+    private String wrapWithPre(String result) {
+        String coding1 = "<pre class=\"java\" style=\"border: 1px solid #b4d0dc; background-color: #ecf8ff;\">";
+        String coding3 = "</pre>";
+        result = coding1 + result + coding3;
+        return result;
     }
 }

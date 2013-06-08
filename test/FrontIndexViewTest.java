@@ -8,7 +8,7 @@ import org.junit.*;
 
 import play.mvc.*;
 
-import static org.ddocumentor.test.StubObjects.*;
+import static org.ddocumentor.testing.StubObjects.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 

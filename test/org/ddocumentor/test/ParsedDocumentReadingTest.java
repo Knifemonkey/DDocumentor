@@ -4,6 +4,7 @@ import org.ddocumentor.project.DocumentEntry;
 import org.ddocumentor.project.Project;
 import org.ddocumentor.project.DocumentRepository;
 import org.ddocumentor.source.ParsedJavaSource;
+import org.ddocumentor.testing.StubObjects;
 import org.junit.Test;
 
 import java.util.List;
