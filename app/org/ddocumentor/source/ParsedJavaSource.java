@@ -1,7 +1,5 @@
 package org.ddocumentor.source;
 
-import com.sun.xml.internal.bind.v2.util.QNameMap;
-
 import java.util.List;
 
 public class ParsedJavaSource {

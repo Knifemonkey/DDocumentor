@@ -1,4 +1,4 @@
-import org.ddocumentor.html.Convert;
+import org.ddocumentor.html.HtmlConverter;
 import org.ddocumentor.project.DocumentEntry;
 import org.ddocumentor.project.DocumentRepository;
 import org.ddocumentor.html.HtmlParsedDocument;
@@ -26,7 +26,7 @@ public class FrontIndexViewTest {
 
         DocumentEntry firstDocumentEntry = project.getFirstDocument();
         ParsedJavaSource parsedJavaSource = documentRepository.findOneByProjectDocument(firstDocumentEntry);
-        HtmlParsedDocument htmlParsedDocument = new Convert().convert(parsedJavaSource);
+        HtmlParsedDocument htmlParsedDocument = new HtmlConverter().convert(parsedJavaSource);
 
         Content html = views.html.index.render(project, htmlParsedDocument);
         assertThat(contentType(html)).isEqualTo("text/html");

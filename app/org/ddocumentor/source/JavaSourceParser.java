@@ -31,7 +31,7 @@ public class JavaSourceParser {
     }
     */
 
-    public ParsedJavaSource parseJavaSource(JavaSource javaSource) throws IOException {
+    public ParsedJavaSource parseJavaSource(JavaSource javaSource) {
 
         ParsedJavaSource htmlParsedDocument = new ParsedJavaSource(null, null);
 
