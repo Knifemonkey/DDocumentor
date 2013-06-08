@@ -1,23 +1,24 @@
 package org.ddocumentor.source;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
 
 public class ParsedJavaSource {
 
-    public ParsedJavaSource(String title, List<String> doc1Parts) {
-        throw new UnsupportedOperationException();
-    }
+    private final String title;
+    private final List<String> parts;
 
-    public List<String> getParts() {
-        throw new UnsupportedOperationException();
+    public ParsedJavaSource(String title, List<String> parts) {
+        this.title = title;
+        this.parts = Lists.newArrayList(parts);
     }
 
     public String getTitle() {
-        throw new UnsupportedOperationException();
+        return title;
     }
 
-
     public List<String> getDocumentParts() {
-        throw new UnsupportedOperationException();
+        return parts;
     }
 }

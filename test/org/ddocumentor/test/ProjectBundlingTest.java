@@ -2,11 +2,12 @@ package org.ddocumentor.test;
 
 import org.ddocumentor.project.DocumentEntry;
 import org.ddocumentor.project.Project;
+import org.ddocumentor.testing.StubObjects;
 import org.junit.Test;
 
 import java.util.SortedSet;
 
-import static org.ddocumentor.test.StubObjects.prepareProject;
+import static org.ddocumentor.testing.StubObjects.prepareProject;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
