@@ -1,9 +1,8 @@
 package org.ddocumentor.test;
 
-import org.ddocumentor.docs.DocumentEntry;
-import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.docs.Project;
-import org.ddocumentor.docs.DocumentRepository;
+import org.ddocumentor.project.DocumentEntry;
+import org.ddocumentor.project.Project;
+import org.ddocumentor.project.DocumentRepository;
 import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.Test;
 

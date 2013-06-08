@@ -1,7 +1,7 @@
-package org.ddocumentor.docs;
+package org.ddocumentor.source;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ddocumentor.source.ParsedJavaSource;
+import org.ddocumentor.html.HtmlParsedDocument;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package org.ddocumentor;
+package org.ddocumentor.html;
 
 import info.bliki.wiki.tags.code.JavaCodeFilter;
 import info.bliki.wiki.tags.code.SourceCodeFormatter;

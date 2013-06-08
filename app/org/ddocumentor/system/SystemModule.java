@@ -1,7 +1,7 @@
 package org.ddocumentor.system;
 
 import com.google.inject.AbstractModule;
-import org.ddocumentor.docs.DocumentRepository;
+import org.ddocumentor.project.DocumentRepository;
 
 /**
  * This module later will be later divided and distributed among other packages to promote encapsulation and cohesion.

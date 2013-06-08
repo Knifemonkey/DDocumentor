@@ -9,10 +9,11 @@ import java.util.TreeSet;
 
 import javax.inject.Inject;
 
-import org.ddocumentor.Convert;
-import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.docs.*;
-import org.ddocumentor.docs.DocumentEntry;
+import org.ddocumentor.html.Convert;
+import org.ddocumentor.html.HtmlParsedDocument;
+import org.ddocumentor.source.FileJavaSourceAdapter;
+import org.ddocumentor.project.*;
+import org.ddocumentor.project.DocumentEntry;
 import org.ddocumentor.source.ParsedJavaSource;
 
 import play.Play;

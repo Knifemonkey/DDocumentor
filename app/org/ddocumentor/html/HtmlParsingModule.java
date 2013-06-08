@@ -1,8 +1,9 @@
-package org.ddocumentor;
+package org.ddocumentor.html;
 
 import com.google.inject.AbstractModule;
+import org.ddocumentor.html.Convert;
 
-public class CoreDocModule extends AbstractModule {
+public class HtmlParsingModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(Convert.class);

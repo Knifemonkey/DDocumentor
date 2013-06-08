@@ -1,4 +1,4 @@
-package org.ddocumentor.docs;
+package org.ddocumentor.project;
 
 import java.util.SortedSet;
 import java.util.TreeSet;

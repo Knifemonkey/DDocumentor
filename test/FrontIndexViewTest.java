@@ -1,8 +1,8 @@
-import org.ddocumentor.Convert;
-import org.ddocumentor.docs.DocumentEntry;
-import org.ddocumentor.docs.DocumentRepository;
-import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.docs.Project;
+import org.ddocumentor.html.Convert;
+import org.ddocumentor.project.DocumentEntry;
+import org.ddocumentor.project.DocumentRepository;
+import org.ddocumentor.html.HtmlParsedDocument;
+import org.ddocumentor.project.Project;
 import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.*;
 

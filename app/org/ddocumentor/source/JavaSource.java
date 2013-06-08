@@ -1,4 +1,4 @@
-package org.ddocumentor.docs;
+package org.ddocumentor.source;
 
 import java.io.Reader;
 

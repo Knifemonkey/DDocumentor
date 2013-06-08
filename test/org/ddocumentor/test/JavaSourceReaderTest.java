@@ -11,11 +11,10 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.docs.JavaSource;
-import org.ddocumentor.docs.JavaSourceParser;
-import org.ddocumentor.source.ParsedJavaSource;
+import org.ddocumentor.source.FileJavaSourceAdapter;
+import org.ddocumentor.html.HtmlParsedDocument;
+import org.ddocumentor.source.JavaSource;
+import org.ddocumentor.source.JavaSourceParser;
 import org.junit.Test;
 
 public class JavaSourceReaderTest {

@@ -1,4 +1,4 @@
-package org.ddocumentor.docs;
+package org.ddocumentor.project;
 
 import org.ddocumentor.source.ParsedJavaSource;
 

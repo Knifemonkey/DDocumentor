@@ -1,4 +1,4 @@
-package org.ddocumentor.docs;
+package org.ddocumentor.html;
 
 import java.util.ArrayList;
 import java.util.List;

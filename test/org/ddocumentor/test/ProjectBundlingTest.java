@@ -1,7 +1,7 @@
 package org.ddocumentor.test;
 
-import org.ddocumentor.docs.DocumentEntry;
-import org.ddocumentor.docs.Project;
+import org.ddocumentor.project.DocumentEntry;
+import org.ddocumentor.project.Project;
 import org.junit.Test;
 
 import java.util.SortedSet;

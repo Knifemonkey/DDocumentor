@@ -1,4 +1,4 @@
-package org.ddocumentor.docs;
+package org.ddocumentor.project;
 
 /**
  * Meta entry for project about available documents

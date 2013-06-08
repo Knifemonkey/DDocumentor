@@ -1,10 +1,10 @@
 package org.ddocumentor.test;
 
 import com.google.common.collect.Sets;
-import org.ddocumentor.docs.DocumentEntry;
-import org.ddocumentor.docs.Project;
-import org.ddocumentor.docs.ProjectFactory;
-import org.ddocumentor.docs.DocumentRepository;
+import org.ddocumentor.project.DocumentEntry;
+import org.ddocumentor.project.Project;
+import org.ddocumentor.project.ProjectFactory;
+import org.ddocumentor.project.DocumentRepository;
 import org.ddocumentor.system.MockDocumentRepository;
 
 import java.util.SortedSet;

@@ -1,7 +1,6 @@
-package org.ddocumentor;
+package org.ddocumentor.html;
 
 
-import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.source.ParsedJavaSource;
 
 public class Convert {

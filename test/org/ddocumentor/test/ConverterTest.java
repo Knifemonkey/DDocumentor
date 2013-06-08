@@ -1,6 +1,6 @@
 package org.ddocumentor.test;
 
-import org.ddocumentor.docs.HtmlParsedDocument;
+import org.ddocumentor.html.HtmlParsedDocument;
 import org.junit.Test;
 
 public class ConverterTest {

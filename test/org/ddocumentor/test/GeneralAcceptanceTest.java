@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.docs.JavaSource;
-import org.ddocumentor.docs.JavaSourceParser;
+import org.ddocumentor.source.FileJavaSourceAdapter;
+import org.ddocumentor.source.JavaSource;
+import org.ddocumentor.source.JavaSourceParser;
 import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.Test;
 
