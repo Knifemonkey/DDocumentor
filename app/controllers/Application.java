@@ -11,12 +11,9 @@ import javax.inject.Inject;
 
 import org.ddocumentor.Convert;
 import org.ddocumentor.FileJavaSourceAdapter;
-import org.ddocumentor.docs.Document;
-import org.ddocumentor.docs.DocumentRepository;
-import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.docs.Project;
-import org.ddocumentor.docs.ProjectFactory;
-import org.ddocumentor.source.ParsedDocumentManager;
+import org.ddocumentor.docs.*;
+import org.ddocumentor.docs.DocumentEntry;
+import org.ddocumentor.source.ParsedJavaSource;
 
 import play.Play;
 import play.mvc.Controller;
@@ -42,8 +39,8 @@ public class Application extends Controller {
     			BufferedReader bufferedReader = 
     	    		 new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));) {
     		
-            ParsedDocumentManager parsedDocumentManager = new FileJavaSourceAdapter();            
-            HtmlParsedDocument htmlParsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
+            ParsedJavaSource parsedJavaSource = new FileJavaSourceAdapter();
+            HtmlParsedDocument htmlParsedDocument = parsedJavaSource.parseJavaSource(bufferedReader);
 
             Project project = prepareProject();
             
@@ -62,12 +59,12 @@ public class Application extends Controller {
     }
 
     private Project prepareProject() {
-        SortedSet<Document> documents = new TreeSet<>();
+        SortedSet<DocumentEntry> documentEntries = new TreeSet<>();
 
-        documents.add(new Document("mockName1"));
-        documents.add(new Document("mockName2"));
+        documentEntries.add(new DocumentEntry("mockName1"));
+        documentEntries.add(new DocumentEntry("mockName2"));
 
-        return projectFactory.createNewProject("MyMockProject", documents);
+        return projectFactory.createNewProject("MyMockProject", documentEntries);
     }
 
 

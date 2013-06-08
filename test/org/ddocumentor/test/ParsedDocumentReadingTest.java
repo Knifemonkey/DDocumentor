@@ -1,6 +1,6 @@
 package org.ddocumentor.test;
 
-import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.DocumentEntry;
 import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
 import org.ddocumentor.docs.DocumentRepository;
@@ -26,10 +26,10 @@ public class ParsedDocumentReadingTest {
     @Test
     public void shouldBeAbleToGetSingleDocByProjectsDocument() {
         Project project = StubObjects.prepareProject();
-        Document firstDocument = project.getFirstDocument();
+        DocumentEntry firstDocumentEntry = project.getFirstDocument();
         DocumentRepository documentRepository = StubObjects.prepareDocumentRepository();
 
-        HtmlParsedDocument htmlParsedDocument = documentRepository.findOneByProjectDocument(firstDocument);
+        HtmlParsedDocument htmlParsedDocument = documentRepository.findOneByProjectDocument(firstDocumentEntry);
 
         assertThat(htmlParsedDocument.getTitle(), not(isEmptyOrNullString()));
         assertThat(htmlParsedDocument.getDocumentParts().get(0), not(isEmptyOrNullString()));

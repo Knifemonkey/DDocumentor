@@ -6,9 +6,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.source.ParsedDocumentManager;
+import org.ddocumentor.source.ParsedJavaSource;
 
-public class FileJavaSourceAdapter implements ParsedDocumentManager {
+public class FileJavaSourceAdapter implements ParsedJavaSource {
 
 	/*
     public FileJavaSourceAdapter(InputStream inputStream) {

@@ -1,7 +1,7 @@
 package org.ddocumentor.test;
 
 import com.google.common.collect.Sets;
-import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.DocumentEntry;
 import org.ddocumentor.docs.Project;
 import org.ddocumentor.docs.ProjectFactory;
 import org.ddocumentor.docs.DocumentRepository;
@@ -12,15 +12,15 @@ import java.util.SortedSet;
 public class StubObjects {
     public static Project prepareProject() {
         ProjectFactory projectFactory = new ProjectFactory();
-        SortedSet<Document> documents = Sets.newTreeSet();
+        SortedSet<DocumentEntry> documentEntries = Sets.newTreeSet();
 
-        Document document;
-        document = new Document("titleFirst");
-        documents.add(document);
-        document = new Document("titleSecond");
-        documents.add(document);
+        DocumentEntry documentEntry;
+        documentEntry = new DocumentEntry("titleFirst");
+        documentEntries.add(documentEntry);
+        documentEntry = new DocumentEntry("titleSecond");
+        documentEntries.add(documentEntry);
 
-        return projectFactory.createNewProject("mockProject", documents);
+        return projectFactory.createNewProject("mockProject", documentEntries);
     }
 
     public static DocumentRepository prepareDocumentRepository() {

@@ -1,9 +1,11 @@
 package org.ddocumentor.docs;
 
+import org.ddocumentor.source.ParsedJavaSource;
+
 import java.util.List;
 
 public interface DocumentRepository {
-    List<HtmlParsedDocument> findAllByProject(Project project);
+    List<DocumentEntry> findAllByProject(Project project);
 
-    HtmlParsedDocument findOneByProjectDocument(Document firstDocument);
+    ParsedJavaSource findOneByProjectDocument(DocumentEntry firstDocumentEntry);
 }

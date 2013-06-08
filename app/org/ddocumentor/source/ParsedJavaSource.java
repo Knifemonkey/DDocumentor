@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.ddocumentor.docs.HtmlParsedDocument;
 
-public interface ParsedDocumentManager {
+public interface ParsedJavaSource {
 	
 
 	HtmlParsedDocument parseJavaSource(BufferedReader javaSourceReader)
 			throws IOException;	
 
-	List<String> getParts(HtmlParsedDocument htmlParsedDocument);
-
+	List<String> getParts();
+    String getTitle();
 	
 }

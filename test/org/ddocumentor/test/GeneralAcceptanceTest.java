@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 import org.ddocumentor.FileJavaSourceAdapter;
 import org.ddocumentor.docs.HtmlParsedDocument;
-import org.ddocumentor.source.ParsedDocumentManager;
+import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.Test;
 
 public class GeneralAcceptanceTest {
@@ -23,8 +23,8 @@ public class GeneralAcceptanceTest {
 	    		 new BufferedReader(new InputStreamReader(sourceFile, "UTF-8"));    
 
 
-        ParsedDocumentManager parsedDocumentManager = new FileJavaSourceAdapter();            
-        HtmlParsedDocument htmlParsedDocument = parsedDocumentManager.parseJavaSource(bufferedReader);
+        ParsedJavaSource parsedJavaSource = new FileJavaSourceAdapter();
+        HtmlParsedDocument htmlParsedDocument = parsedJavaSource.parseJavaSource(bufferedReader);
 
 
 

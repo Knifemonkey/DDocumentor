@@ -1,18 +1,16 @@
 package org.ddocumentor.docs;
 
-import org.ddocumentor.docs.Document;
-
 import java.util.Collections;
 import java.util.SortedSet;
 
 public class Project {
 
     private final String name;
-    private final SortedSet<Document> documents;
+    private final SortedSet<DocumentEntry> documentEntries;
 
-    public Project(String name, SortedSet<Document> documents) {
+    public Project(String name, SortedSet<DocumentEntry> documentEntries) {
         this.name = name;
-        this.documents = Collections.unmodifiableSortedSet(documents);
+        this.documentEntries = Collections.unmodifiableSortedSet(documentEntries);
     }
 
     public Long getId() {
@@ -23,11 +21,11 @@ public class Project {
         return name;
     }
 
-    public SortedSet<Document> getAvailableDocuments() {
-        return documents;
+    public SortedSet<DocumentEntry> getAvailableDocuments() {
+        return documentEntries;
     }
 
-    public Document getFirstDocument() {
-        return documents.first();
+    public DocumentEntry getFirstDocument() {
+        return documentEntries.first();
     }
 }

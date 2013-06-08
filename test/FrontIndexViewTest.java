@@ -1,4 +1,4 @@
-import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.DocumentEntry;
 import org.ddocumentor.docs.DocumentRepository;
 import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
@@ -22,8 +22,8 @@ public class FrontIndexViewTest {
         Project project = prepareProject();
         DocumentRepository documentRepository = prepareDocumentRepository();
 
-        Document firstDocument = project.getFirstDocument();
-        HtmlParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(firstDocument);
+        DocumentEntry firstDocumentEntry = project.getFirstDocument();
+        HtmlParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(firstDocumentEntry);
 
         Content html = views.html.index.render(project, oneByProjectDocument);
         assertThat(contentType(html)).isEqualTo("text/html");

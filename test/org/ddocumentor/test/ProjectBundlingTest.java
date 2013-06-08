@@ -1,6 +1,6 @@
 package org.ddocumentor.test;
 
-import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.DocumentEntry;
 import org.ddocumentor.docs.Project;
 import org.junit.Test;
 
@@ -16,18 +16,18 @@ public class ProjectBundlingTest {
     public void shouldBeAbleToGetDocumentListFromProject() {
         Project project = prepareProject();
 
-        SortedSet<Document> documentList = project.getAvailableDocuments();
+        SortedSet<DocumentEntry> documentEntryList = project.getAvailableDocuments();
 
-        assertThat(documentList, not(hasSize(0)));
+        assertThat(documentEntryList, not(hasSize(0)));
     }
 
 
     @Test
     public void shouldBeAbleToGetFirstDocument() {
         Project project = StubObjects.prepareProject();
-        Document firstDocument = project.getFirstDocument();
+        DocumentEntry firstDocumentEntry = project.getFirstDocument();
 
-        assertThat(firstDocument.getTitle(), notNullValue());
+        assertThat(firstDocumentEntry.getTitle(), notNullValue());
     }
 
 }

@@ -1,7 +1,7 @@
 package org.ddocumentor.system;
 
 import com.google.common.collect.Lists;
-import org.ddocumentor.docs.Document;
+import org.ddocumentor.docs.DocumentEntry;
 import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
 import org.ddocumentor.docs.DocumentRepository;
@@ -34,7 +34,7 @@ public class MockDocumentRepository implements DocumentRepository {
     }
 
     @Override
-    public HtmlParsedDocument findOneByProjectDocument(Document firstDocument) {
+    public HtmlParsedDocument findOneByProjectDocument(DocumentEntry firstDocumentEntry) {
     	
         List<String> doc1Parts = new ArrayList<>();        
         doc1Parts.add("<b>my long markup for project</b>");
