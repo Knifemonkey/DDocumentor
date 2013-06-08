@@ -1,7 +1,9 @@
+import org.ddocumentor.Convert;
 import org.ddocumentor.docs.DocumentEntry;
 import org.ddocumentor.docs.DocumentRepository;
 import org.ddocumentor.docs.HtmlParsedDocument;
 import org.ddocumentor.docs.Project;
+import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.*;
 
 import play.mvc.*;
@@ -23,9 +25,10 @@ public class FrontIndexViewTest {
         DocumentRepository documentRepository = prepareDocumentRepository();
 
         DocumentEntry firstDocumentEntry = project.getFirstDocument();
-        HtmlParsedDocument oneByProjectDocument = documentRepository.findOneByProjectDocument(firstDocumentEntry);
+        ParsedJavaSource parsedJavaSource = documentRepository.findOneByProjectDocument(firstDocumentEntry);
+        HtmlParsedDocument htmlParsedDocument = new Convert().convert(parsedJavaSource);
 
-        Content html = views.html.index.render(project, oneByProjectDocument);
+        Content html = views.html.index.render(project, htmlParsedDocument);
         assertThat(contentType(html)).isEqualTo("text/html");
         assertThat(contentAsString(html)).contains("mockProject");
         assertThat(contentAsString(html)).contains("titleFirst");

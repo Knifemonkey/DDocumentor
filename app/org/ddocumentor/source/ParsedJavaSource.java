@@ -1,18 +1,25 @@
 package org.ddocumentor.source;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import com.sun.xml.internal.bind.v2.util.QNameMap;
+
 import java.util.List;
 
-import org.ddocumentor.docs.HtmlParsedDocument;
+public class ParsedJavaSource {
 
-public interface ParsedJavaSource {
-	
+    public ParsedJavaSource(String title, List<String> doc1Parts) {
+        throw new UnsupportedOperationException();
+    }
 
-	HtmlParsedDocument parseJavaSource(BufferedReader javaSourceReader)
-			throws IOException;	
+    public List<String> getParts() {
+        throw new UnsupportedOperationException();
+    }
 
-	List<String> getParts();
-    String getTitle();
-	
+    public String getTitle() {
+        throw new UnsupportedOperationException();
+    }
+
+
+    public List<String> getDocumentParts() {
+        throw new UnsupportedOperationException();
+    }
 }

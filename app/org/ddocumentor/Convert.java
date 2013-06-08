@@ -2,6 +2,7 @@ package org.ddocumentor;
 
 
 import org.ddocumentor.docs.HtmlParsedDocument;
+import org.ddocumentor.source.ParsedJavaSource;
 
 public class Convert {
 
@@ -21,4 +22,7 @@ public class Convert {
     	return null;
     }
 
+    public HtmlParsedDocument convert(ParsedJavaSource parsedJavaSource) {
+        throw new UnsupportedOperationException();
+    }
 }

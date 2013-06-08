@@ -13,6 +13,8 @@ import java.nio.file.Path;
 
 import org.ddocumentor.FileJavaSourceAdapter;
 import org.ddocumentor.docs.HtmlParsedDocument;
+import org.ddocumentor.docs.JavaSource;
+import org.ddocumentor.docs.JavaSourceParser;
 import org.ddocumentor.source.ParsedJavaSource;
 import org.junit.Test;
 
@@ -24,9 +26,9 @@ public class JavaSourceReaderTest {
 		
 		BufferedReader javaSourceReader = prepareTestingFile();
 		
-		ParsedJavaSource parsedJavaSource = new FileJavaSourceAdapter();
+		JavaSource parsedJavaSource = new FileJavaSourceAdapter();
 		HtmlParsedDocument htmlParsedDocument =
-				parsedJavaSource.parseJavaSource(javaSourceReader);
+				new JavaSourceParser().parseJavaSource(javaSourceReader);
 		
 		assertThat(htmlParsedDocument.getDocumentParts(), hasSize(3));
 		assertThat(htmlParsedDocument.getDocumentParts().get(2), is("Hello Doc Start3!"));
