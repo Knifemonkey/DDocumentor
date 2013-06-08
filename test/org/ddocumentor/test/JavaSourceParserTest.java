@@ -7,7 +7,6 @@ import org.ddocumentor.source.JavaSource;
 import org.ddocumentor.source.JavaSourceParser;
 import org.ddocumentor.source.JavaSourceParserImpl;
 import org.ddocumentor.source.ParsedJavaSource;
-import org.ddocumentor.source.custom.HelloDocStartJavaSource;
 import org.junit.Test;
 import org.junit.Before;
 import static org.hamcrest.Matchers.*;
@@ -77,7 +76,7 @@ public class JavaSourceParserTest {
 	@Test 
 	public void shouldParseIntoProperStructure() {
 		
-		ParsedJavaSource parsedSource;
+		ParsedJavaSource parsedSource = null;
 		
 		assertThat(parsedSource.getTitle(), is("This is document"));
 		assertThat(parsedSource.getParts(), hasItem(containsString("Hello Doc Start2!")));

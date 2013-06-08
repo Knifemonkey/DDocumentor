@@ -5,16 +5,13 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.ddocumentor.source.FileJavaSourceAdapter;
-import org.ddocumentor.html.HtmlParsedDocument;
+import org.ddocumentor.source.JavaSourceFactory;
 import org.ddocumentor.source.JavaSource;
 import org.ddocumentor.source.JavaSourceParser;
 import org.ddocumentor.source.ParsedJavaSource;
@@ -28,7 +25,7 @@ public class JavaSourceReaderTest {
 
         InputStream sourceInputStream = prepareTestingFile();
 
-        JavaSource javaSource = new FileJavaSourceAdapter(sourceInputStream);
+        JavaSource javaSource = new JavaSourceFactory(sourceInputStream);
         ParsedJavaSource parsedJavaSource =
                 new JavaSourceParser().parseJavaSource(javaSource);
 

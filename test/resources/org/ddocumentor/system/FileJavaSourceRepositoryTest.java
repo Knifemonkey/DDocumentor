@@ -41,15 +41,7 @@ public class FileJavaSourceRepositoryTest {
             protected boolean matchesSafely(List<JavaSource> javaSources) {
 
                 for (JavaSource javaSource : javaSources) {
-                    Reader content = javaSource.getContent();
-                    String text = "";
-                    try {
-                        text = CharStreams.toString(content);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } finally {
-                        Closeables.closeQuietly(content);
-                    }
+                    String text = javaSource.getContent();
 
                     if (text.contains(magicalTestConst)) {
                         return true;

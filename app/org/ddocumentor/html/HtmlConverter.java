@@ -1,9 +1,12 @@
 package org.ddocumentor.html;
 
 
+import com.google.common.collect.Lists;
 import info.bliki.wiki.tags.code.JavaCodeFilter;
 import info.bliki.wiki.tags.code.SourceCodeFormatter;
 import org.ddocumentor.source.ParsedJavaSource;
+
+import java.util.List;
 
 public class HtmlConverter {
 //
@@ -23,7 +26,7 @@ public class HtmlConverter {
 //    	return null;
 //    }
 
-    public HtmlParsedDocument convert(ParsedJavaSource parsedJavaSource) {
+    private HtmlParsedDocument convert(ParsedJavaSource parsedJavaSource) {
 
         HtmlParsedDocument htmlParsedDocument = new HtmlParsedDocument();
         htmlParsedDocument.setTitle(parsedJavaSource.getTitle());
@@ -49,5 +52,16 @@ public class HtmlConverter {
         String coding3 = "</pre>";
         result = coding1 + result + coding3;
         return result;
+    }
+
+    public List<HtmlParsedDocument> convert(List<ParsedJavaSource> parsedJavaSource) {
+        List<HtmlParsedDocument> parsedDocuments = Lists.newArrayList();
+
+        for (ParsedJavaSource javaSource : parsedJavaSource) {
+            HtmlParsedDocument htmlParsedDocument = convert(javaSource);
+            parsedDocuments.add(htmlParsedDocument);
+        }
+
+        return parsedDocuments;
     }
 }
