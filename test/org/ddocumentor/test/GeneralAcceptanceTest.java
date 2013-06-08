@@ -25,9 +25,12 @@ public class GeneralAcceptanceTest {
         JavaSource javaSource = JavaSourceFactory.createJavaSource(sourceFile);
         javaSources.add(javaSource);
 
-        List<ParsedJavaSource> parsedJavaSource = new JavaSourceParserImpl().parse(javaSources);
+        List<ParsedJavaSource> parsedJavaSources = new JavaSourceParserImpl().parse(javaSources);
 
+        ParsedJavaSource parsedJavaSource = parsedJavaSources.get(0);
         HtmlParsedDocument htmlParsedDocument = new HtmlConverter().convert(parsedJavaSource);
+
+
         assertThat(htmlParsedDocument.getTitle(), is("My title"));
         assertThat(htmlParsedDocument.getDocumentParts(), partsHaveHtml());
     }

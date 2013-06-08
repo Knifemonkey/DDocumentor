@@ -26,17 +26,17 @@ public class HtmlConverter {
 //    	return null;
 //    }
 
-    private HtmlParsedDocument convert(ParsedJavaSource parsedJavaSource) {
+    public HtmlParsedDocument convert(ParsedJavaSource parsedJavaSource) {
+        String title = parsedJavaSource.getTitle();
+        List<String> parts = Lists.newArrayList();
 
-        HtmlParsedDocument htmlParsedDocument = new HtmlParsedDocument();
-        htmlParsedDocument.setTitle(parsedJavaSource.getTitle());
-
-        for (String code : parsedJavaSource.getDocumentParts()) {
+        for (String code : parsedJavaSource.getParts()) {
             String result = prettify(code);
             result = wrapWithPre(result);
-            htmlParsedDocument.addPart(result);
+            parts.add(result);
         }
 
+        HtmlParsedDocument htmlParsedDocument = new HtmlParsedDocument(title, parts);
         return htmlParsedDocument;
     }
 
@@ -52,16 +52,5 @@ public class HtmlConverter {
         String coding3 = "</pre>";
         result = coding1 + result + coding3;
         return result;
-    }
-
-    public List<HtmlParsedDocument> convert(List<ParsedJavaSource> parsedJavaSource) {
-        List<HtmlParsedDocument> parsedDocuments = Lists.newArrayList();
-
-        for (ParsedJavaSource javaSource : parsedJavaSource) {
-            HtmlParsedDocument htmlParsedDocument = convert(javaSource);
-            parsedDocuments.add(htmlParsedDocument);
-        }
-
-        return parsedDocuments;
     }
 }

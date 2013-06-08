@@ -63,7 +63,7 @@ public class FileJavaSourceRepositoryTest {
 
 
         FileJavaSourceRepository javaSourceRepository
-                = new FileJavaSourceRepository(FileSystems.getDefault().getPath(".", "tests"));
+                = new FileJavaSourceRepository(FileSystems.getDefault().getPath(".", "test"));
 
         return javaSourceRepository;
     }

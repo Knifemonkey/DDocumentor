@@ -33,7 +33,7 @@ public class ParsedDocumentReadingTest {
         ParsedJavaSource parsedJavaSource = documentRepository.findOneByProjectDocument(firstDocumentEntry);
 
         assertThat(parsedJavaSource.getTitle(), not(isEmptyOrNullString()));
-        assertThat(parsedJavaSource.getDocumentParts().get(0), not(isEmptyOrNullString()));
+        assertThat(parsedJavaSource.getParts().get(0), not(isEmptyOrNullString()));
     }
 
 
