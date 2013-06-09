@@ -37,11 +37,23 @@ public class SysProjectModule extends AbstractModule {
 
     @Provides
     @Singleton
+    private DbNameProvider dbNameProvider() {
+        return new DbNameProvider();
+    }
+
+    @Provides
+    @Singleton
     private Mongo mongo() {
         try {
             return new Mongo("localhost", 27017);
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static class DbNameProvider {
+        public String getName() {
+            return "ddocumentor";
         }
     }
 }

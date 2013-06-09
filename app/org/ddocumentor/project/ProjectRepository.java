@@ -2,7 +2,7 @@ package org.ddocumentor.project;
 
 public interface ProjectRepository {
 
-    Project findOneById(String id);
+    Project findOneById(Long id);
 
-    void save(Project project);
+    Project save(Project project);
 }

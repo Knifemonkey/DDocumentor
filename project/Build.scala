@@ -1,6 +1,8 @@
 import sbt._
 import Keys._
 import play.Project._
+import de.johoop.findbugs4sbt.FindBugs._
+import de.johoop.findbugs4sbt.ReportType
 
 object ApplicationBuild extends Build {
 
@@ -34,10 +36,27 @@ object ApplicationBuild extends Build {
 
   )
 
-  val main = play.Project(appName, appVersion, appDependencies).settings(
+  val main = play.Project(appName, appVersion, appDependencies, settings = Defaults.defaultSettings ++ findbugsSettings).settings(
     // Add your own project settings here
     resolvers += "info-bliki-repository" at "http://gwtwiki.googlecode.com/svn/maven-repository/",
-    resolvers += "Morphia repository" at "http://morphia.googlecode.com/svn/mavenrepo/"
+    resolvers += "Morphia repository" at "http://morphia.googlecode.com/svn/mavenrepo/",
+
+    findbugsExcludeFilters := Some(
+      <FindBugsFilter>
+        <!-- See docs/examples at http://findbugs.sourceforge.net/manual/filter.html -->
+        <Match>
+          <Class name="~views\.html\..*"/>
+        </Match>
+        <Match>
+          <Class name="~Routes.*"/>
+        </Match>
+        <Match>
+          <Class name="~controllers\.routes.*"/>
+        </Match>
+      </FindBugsFilter>
+    ),
+    findbugsReportType := ReportType.FancyHistHtml,
+    findbugsReportName := "findbugs.html"
   )
 
 }
