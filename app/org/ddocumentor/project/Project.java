@@ -1,8 +1,10 @@
 package org.ddocumentor.project;
 
+import com.google.code.morphia.annotations.Entity;
+
 import java.util.Collections;
 import java.util.SortedSet;
-
+@Entity
 public class Project {
 
     private final String name;

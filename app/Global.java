@@ -1,6 +1,7 @@
 import org.ddocumentor.html.HtmlParsingModule;
 import org.ddocumentor.project.ProjectModule;
 import org.ddocumentor.system.SystemModule;
+import org.ddocumentor.system.project.SysProjectModule;
 import play.GlobalSettings;
 
 import com.google.inject.Guice;
@@ -16,7 +17,10 @@ public class Global extends GlobalSettings {
     }
 
     private static Injector createInjector() {
-        return Guice.createInjector(new HtmlParsingModule(), new SystemModule(), new ProjectModule());
+        return Guice.createInjector(
+                new HtmlParsingModule(), new SystemModule(),
+                new ProjectModule(), new SysProjectModule()
+        );
     }
 
 }

@@ -13,6 +13,7 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
     "info.bliki.wiki" % "bliki-core" % "3.0.19",
+    "com.google.code.morphia" % "morphia" % "0.99",
     "com.google.inject" % "guice" % "3.0",
     "javax.inject" % "javax.inject" % "1",
     "org.hamcrest" % "hamcrest-library" % "1.3" % "test",
@@ -35,7 +36,8 @@ object ApplicationBuild extends Build {
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here
-    resolvers += "info-bliki-repository" at "http://gwtwiki.googlecode.com/svn/maven-repository/"
+    resolvers += "info-bliki-repository" at "http://gwtwiki.googlecode.com/svn/maven-repository/",
+    resolvers += "Morphia repository" at "http://morphia.googlecode.com/svn/mavenrepo/"
   )
 
 }
