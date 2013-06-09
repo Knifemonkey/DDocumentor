@@ -1,5 +1,6 @@
 DDocumentor
 =====================================
+[![Build Status](https://drone.io/github.com/Knifemonkey/DDocumentor/status.png)](https://drone.io/github.com/Knifemonkey/DDocumentor/latest)
 
 Projects that aims to create application that can generate documentation given specific markup from your sources files
 that are in VCS repository.
