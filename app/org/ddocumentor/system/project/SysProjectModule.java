@@ -16,7 +16,7 @@ public class SysProjectModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(DocumentRepository.class).to(MongoDbDocumentRepository.class);
-        bind(ProjectRepository.class).to(MongoDbsProjectRepository.class);
+        bind(ProjectRepository.class).to(MongoDbProjectRepository.class);
     }
 
 

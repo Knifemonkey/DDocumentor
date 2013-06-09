@@ -10,12 +10,12 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class MongoDbsProjectRepository implements ProjectRepository {
+public class MongoDbProjectRepository implements ProjectRepository {
 
     final ProjectEntryDAO projectEntryDAO;
 
     @Inject
-    public MongoDbsProjectRepository(Morphia morphia, Mongo mongo) {
+    public MongoDbProjectRepository(Morphia morphia, Mongo mongo) {
         this.projectEntryDAO = new ProjectEntryDAO(morphia, mongo);
     }
 
