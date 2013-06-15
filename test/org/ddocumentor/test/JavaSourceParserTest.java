@@ -76,30 +76,20 @@ public class JavaSourceParserTest {
     }
 
     @Test
-    public void shouldParseIntoProperStructure() {
-
-        ParsedJavaSource parsedSource = null;
-
-        assertThat(parsedSource.getTitle(), is("This is document"));
-        assertThat(parsedSource.getParts(), hasItem(containsString("Hello Doc Start2!")));
-        assertThat(parsedSource.getParts(), hasSize(3));
-    }
-
-    @Test
     public void javaSourceReaderShouldReturnDocumentInDifferentParts()
             throws IOException {
 
         InputStream sourceInputStream = prepareTestingFile();
 
-        JavaSource javaSource = JavaSourceFactory.createJavaSource(sourceInputStream);
-
+        JavaSource javaSource1 = JavaSourceFactory.createJavaSource(sourceInputStream);
+        
         List<ParsedJavaSource> parsedJavaSources =
-                new JavaSourceParserImpl().parse(asList(javaSource));
+                new JavaSourceParserImpl().parse(asList(javaSource1));
 
 
         ParsedJavaSource parsedJavaSource = parsedJavaSources.get(0);
         assertThat(parsedJavaSource.getParts(), hasSize(3));
-        assertThat(parsedJavaSource.getParts().get(2), is("Hello Doc Start3!"));
+        assertThat(parsedJavaSource.getParts().get(2), is("System.out.println(\"Hello Doc Start3!\");"));
         assertThat(parsedJavaSource.getTitle(), is(" This is document"));
     }
 
