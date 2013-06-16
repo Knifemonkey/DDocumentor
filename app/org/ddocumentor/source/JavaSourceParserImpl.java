@@ -1,14 +1,54 @@
 package org.ddocumentor.source;
 
-import org.apache.commons.lang3.StringUtils;
-import org.ddocumentor.html.HtmlParsedDocument;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class JavaSourceParserImpl implements JavaSourceParser {
+	
+	@Override
+	public List<ParsedJavaSource> parse(List<JavaSource> javaSources) {
+		
+		List<ParsedJavaSource> parsedJavaSources = new ArrayList<>(); 
+		for (JavaSource javaSource : javaSources) {
+			
+			ParsedJavaSource parsedJavaSource = new ParsedJavaSource(getTitle(javaSource), getDocumentParts(javaSource));
+			parsedJavaSources.add(parsedJavaSource);
+		
+		}
+		
+		return parsedJavaSources;
+		
+	}
+
+	private List<String> getDocumentParts(JavaSource javaSource) {	
+			
+		List<String> documentParts = new ArrayList<>();
+		
+		String[] documentPartsArray = StringUtils.substringsBetween(javaSource.getContent(), 
+        		JavaSource.TAG_DOC_EXAMPLE_START, JavaSource.TAG_DOC_EXAMPLE_END); 
+		
+		for (String currentPart : documentPartsArray) {						
+			documentParts.add(stripJavaSourceCode(currentPart));			
+		}
+		
+        return documentParts;      
+	}
+
+	private String stripJavaSourceCode(String currentPart) {
+		String strippedCurrentPart = StringUtils.replaceChars(currentPart, "\r\n\t//", "");
+		return strippedCurrentPart;
+	}
+	
+	private String getTitle(JavaSource javaSource) {
+		
+		String title = StringUtils.substringBetween(javaSource.getContent(), 
+				JavaSource.TAG_DOC_TITLE, "\n" );
+		
+		return stripJavaSourceCode(title);
+	}	
+	
     /*
     public FileJavaSourceAdapter(InputStream inputStream) {
         try {
@@ -83,29 +123,6 @@ public class JavaSourceParserImpl implements JavaSourceParser {
 	
     */	
 	
-	@Override
-	public List<ParsedJavaSource> parse(List<JavaSource> javaSources) {
-		
-		List<ParsedJavaSource> parsedJavaSources = new ArrayList<>(); 
-		for (JavaSource javaSource : javaSources) {
-			
-			ParsedJavaSource parsedJavaSource = new ParsedJavaSource(getTitle(javaSource), getDocumentParts(javaSource));
-			parsedJavaSources.add(parsedJavaSource);
-		
-		}
-		
-		return parsedJavaSources;
-		
-	}
 
-	private List<String> getDocumentParts(JavaSource javaSource) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private String getTitle(JavaSource javaSource) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
 
 }
