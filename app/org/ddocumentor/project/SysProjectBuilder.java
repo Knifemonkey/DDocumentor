@@ -3,7 +3,7 @@ package org.ddocumentor.project;
 import java.util.SortedSet;
 
 public class SysProjectBuilder {
-    Long id;
+    String id;
     String name;
     SortedSet<DocumentEntry> documentEntries;
 
@@ -17,7 +17,7 @@ public class SysProjectBuilder {
         return this;
     }
 
-    public SysProjectBuilder setId(Long id) {
+    public SysProjectBuilder setId(String id) {
         this.id = id;
         return this;
     }

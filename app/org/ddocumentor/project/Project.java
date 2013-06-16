@@ -1,14 +1,12 @@
 package org.ddocumentor.project;
 
-import com.google.code.morphia.annotations.Entity;
 
 import java.util.Collections;
 import java.util.SortedSet;
 
-@Entity
 public class Project {
 
-    private final Long id;
+    private final String id;
     private final String name;
     private final SortedSet<DocumentEntry> documentEntries;
 
@@ -24,7 +22,7 @@ public class Project {
         this.documentEntries = Collections.unmodifiableSortedSet(documentEntries);
     }
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 

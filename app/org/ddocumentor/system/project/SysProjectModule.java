@@ -1,16 +1,13 @@
 package org.ddocumentor.system.project;
 
-import com.google.code.morphia.Datastore;
-import com.google.code.morphia.Morphia;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.mongodb.Mongo;
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
 import org.ddocumentor.project.DocumentRepository;
 import org.ddocumentor.project.ProjectRepository;
-import org.ddocumentor.source.ParsedJavaSource;
 
 import javax.inject.Singleton;
-import java.net.UnknownHostException;
 
 public class SysProjectModule extends AbstractModule {
     @Override
@@ -22,38 +19,15 @@ public class SysProjectModule extends AbstractModule {
 
     @Provides
     @Singleton
-    Datastore datastore() {
-        Mongo m = mongo();
-        Datastore db = morphia().map(ParsedJavaSource.class).createDatastore(
-                m, "mydb");
-        return db;
-    }
-
-    @Provides
-    @Singleton
-    private Morphia morphia() {
-        return new Morphia();
-    }
-
-    @Provides
-    @Singleton
-    private DbNameProvider dbNameProvider() {
-        return new DbNameProvider();
-    }
-
-    @Provides
-    @Singleton
-    private Mongo mongo() {
+    DB datastore() {
         try {
-            return new Mongo("localhost", 27017);
-        } catch (UnknownHostException e) {
+            MongoClient mongoClient = new MongoClient();
+            DB db = mongoClient.getDB("ddocumentor");
+            return db;
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static class DbNameProvider {
-        public String getName() {
-            return "ddocumentor";
-        }
-    }
+
 }

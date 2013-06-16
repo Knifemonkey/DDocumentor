@@ -1,48 +1,67 @@
 package org.ddocumentor.system.project;
 
-import com.google.code.morphia.Key;
-import com.google.code.morphia.Morphia;
-import com.google.code.morphia.dao.BasicDAO;
-import com.mongodb.Mongo;
+import com.google.inject.Inject;
+import com.mongodb.*;
+import org.bson.types.ObjectId;
 import org.ddocumentor.project.Project;
 import org.ddocumentor.project.ProjectRepository;
 import org.ddocumentor.project.SysProjectBuilder;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.Map;
 
 @Singleton
 class MongoDbProjectRepository implements ProjectRepository {
 
-    final ProjectEntryDAO projectEntryDAO;
-
     @Inject
-    public MongoDbProjectRepository(Morphia morphia, Mongo mongo, SysProjectModule.DbNameProvider nameProvider) {
-        this.projectEntryDAO = new ProjectEntryDAO(morphia, mongo, nameProvider.getName());
-    }
+    private DB db;
+
 
     @Override
-    public Project findOneById(Long id) {
-        return projectEntryDAO.get(id);
-    }
+    public Project findOneById(String id) {
+        DBCollection collection = db.getCollection("projects");
+        BasicDBObject query = new BasicDBObject("_id", new ObjectId(id));
+        DBObject dbObject = collection.findOne(query);
 
-    @Override
-    public Project save(Project project) {
-        Key<Project> save = projectEntryDAO.save(project);
-        Long id = (Long) save.getId();
-
-        Project build = new ProjectBuilder()
-                .from(project)
-                .setId(id)
-                .build();
+        Project build = buildProject(dbObject);
 
         return build;
     }
 
-    public class ProjectEntryDAO extends BasicDAO<Project, Long> {
-        public ProjectEntryDAO(Morphia morphia, Mongo mongo, String name) {
-            super(mongo, morphia, name);
+    @Override
+    public Project save(Project project) {
+
+        DBCollection collection = db.getCollection("projects");
+        BasicDBObjectBuilder projectBuilder = BasicDBObjectBuilder.start()
+                .add("name", project.getName());
+
+        if (project.getId() != null) {
+            projectBuilder.add("_id", new ObjectId(project.getId()));
         }
+
+        DBObject dbObject = projectBuilder.get();
+
+        if (project.getId() != null) {
+            collection.save(dbObject);
+        } else {
+            collection.insert(dbObject);
+        }
+
+        Project build = buildProject(dbObject);
+
+        return build;
+    }
+
+
+    private Project buildProject(DBObject one) {
+        Map<String, Object> map = one.toMap();
+        String idString = map.get("_id").toString();
+        String name = map.get("name").toString();
+
+        return new ProjectBuilder()
+                .setName(name)
+                .setId(idString)
+                .build();
     }
 
     public class ProjectBuilder extends SysProjectBuilder {
