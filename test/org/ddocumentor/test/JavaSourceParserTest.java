@@ -90,13 +90,13 @@ public class JavaSourceParserTest {
         ParsedJavaSource parsedJavaSource = parsedJavaSources.get(0);
         assertThat(parsedJavaSource.getParts(), hasSize(3));
         assertThat(parsedJavaSource.getParts().get(2), is("System.out.println(\"Hello Doc Start3!\");"));
-        assertThat(parsedJavaSource.getTitle(), is(" This is document"));
+        assertThat(parsedJavaSource.getTitle(), is("This is document"));
     }
 
     private InputStream prepareTestingFile() throws IOException {
         //\DDocumentor\test\resources\SourceFile.java
         Path sourceFilePath = FileSystems.getDefault()
-                .getPath("test", "resources", "SourceFile.java");
+                .getPath("test", "resources", "SourceFile.pjava");
         InputStream inputStream = Files.newInputStream(sourceFilePath.toAbsolutePath());
         return inputStream;
     }

@@ -31,12 +31,12 @@ public class GeneralAcceptanceTest {
         HtmlParsedDocument htmlParsedDocument = new HtmlConverter().convert(parsedJavaSource);
 
 
-        assertThat(htmlParsedDocument.getTitle(), is("My title"));
+        assertThat(htmlParsedDocument.getTitle(), is("This is document"));
         assertThat(htmlParsedDocument.getDocumentParts(), partsHaveHtml());
     }
 
     private InputStream getSourceFileContents() throws IOException {
-        String fileName = "/public/examples/SourceFile.java";
+        String fileName = "/resources/SourceFile.pjava";
         InputStream resourceAsStream = GeneralAcceptanceTest.class.getResourceAsStream(fileName);
         return resourceAsStream;
     }

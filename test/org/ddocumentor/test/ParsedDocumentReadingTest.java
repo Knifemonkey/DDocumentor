@@ -13,16 +13,6 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 public class ParsedDocumentReadingTest {
-    @Test
-    public void shouldBeAbleToGetDocs() {
-        Project project = StubObjects.prepareProject();
-        DocumentRepository documentRepository = StubObjects.prepareDocumentRepository();
-
-        List<DocumentEntry> htmlParsedDocuments = documentRepository.findAllByProject(project);
-
-        assertThat(htmlParsedDocuments, not(hasSize(0)));
-    }
-
 
     @Test
     public void shouldBeAbleToGetSingleDocByProjectsDocument() {

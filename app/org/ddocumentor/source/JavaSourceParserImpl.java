@@ -45,8 +45,10 @@ public class JavaSourceParserImpl implements JavaSourceParser {
 		
 		String title = StringUtils.substringBetween(javaSource.getContent(), 
 				JavaSource.TAG_DOC_TITLE, "\n" );
-		
-		return stripJavaSourceCode(title);
+
+        String titleResult = stripJavaSourceCode(title);
+        titleResult = titleResult.trim();
+        return titleResult;
 	}	
 	
     /*

@@ -18,7 +18,9 @@ object ApplicationBuild extends Build {
     "org.mongodb" % "mongo-java-driver" % "2.11.1",
     "com.google.inject" % "guice" % "3.0",
     "javax.inject" % "javax.inject" % "1",
+    "com.google.code.gson" % "gson" % "2.2.4",
     "org.hamcrest" % "hamcrest-library" % "1.3" % "test",
+    "de.flapdoodle.embed" % "de.flapdoodle.embed.mongo" % "1.33" % "test",
     "jdepend" % "jdepend" % "2.9.1" % "test",
     "org.mockito" % "mockito-core" % "1.9.5" % "test",
     // These deps below are needed to make tests work without ClassDefNotFound exceptions, they are not actually needed in the code

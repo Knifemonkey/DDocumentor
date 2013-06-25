@@ -1,11 +1,12 @@
 package org.ddocumentor.project;
 
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class SysProjectBuilder {
     String id;
     String name;
-    SortedSet<DocumentEntry> documentEntries;
+    SortedSet<DocumentEntry> documentEntries = new TreeSet<>();
 
     protected SysProjectBuilder() {
     }

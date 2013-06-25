@@ -1,6 +1,8 @@
 package org.ddocumentor.project;
 
 
+import org.ddocumentor.source.ParsedJavaSource;
+
 import java.util.Collections;
 import java.util.SortedSet;
 
@@ -19,7 +21,7 @@ public class Project {
     Project(String name, SortedSet<DocumentEntry> documentEntries) {
         this.id = null;
         this.name = name;
-        this.documentEntries = Collections.unmodifiableSortedSet(documentEntries);
+        this.documentEntries = documentEntries;
     }
 
     public String getId() {
@@ -31,10 +33,14 @@ public class Project {
     }
 
     public SortedSet<DocumentEntry> getAvailableDocuments() {
-        return documentEntries;
+        return Collections.unmodifiableSortedSet(documentEntries);
     }
 
     public DocumentEntry getFirstDocument() {
         return documentEntries.first();
+    }
+
+    public void addParsedJavaSource(ParsedJavaSource parsedJavaSource) {
+        documentEntries.add(new DocumentEntry(parsedJavaSource.getId(), parsedJavaSource.getTitle()));
     }
 }

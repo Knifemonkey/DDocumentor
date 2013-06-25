@@ -37,7 +37,6 @@ public class FrontIndexViewTest {
 
         assertThat(contentAsString(html)).contains("Hello Doc Start!");
         assertThat(contentAsString(html)).contains("Hello Doc Start2!");
-        assertThat(contentAsString(html)).contains("Hello Doc Start3!");
     }
 
 

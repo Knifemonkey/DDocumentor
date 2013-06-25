@@ -6,11 +6,22 @@ public class ParsedJavaSource {
 
     private String title;
     private List<String> parts;
+    private String id;
 
 
     public ParsedJavaSource(String title, List<String> parts) {
         this.title = title;
         this.parts = parts;
+    }
+
+    public ParsedJavaSource(SysSourceBuilder b) {
+        this.id = b.id;
+        this.parts = b.parts;
+        this.title = b.title;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public List<String> getParts() {
@@ -20,4 +31,6 @@ public class ParsedJavaSource {
     public String getTitle() {
         return this.title;
     }
+
+
 }

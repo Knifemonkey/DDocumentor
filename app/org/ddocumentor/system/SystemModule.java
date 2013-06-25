@@ -9,6 +9,5 @@ import org.ddocumentor.project.DocumentRepository;
 public class SystemModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(DocumentRepository.class).to(MockDocumentRepository.class);
     }
 }
