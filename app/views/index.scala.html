@@ -13,28 +13,23 @@
             <div class="well sidebar-nav">
                 <ul class="nav nav-list" id="sidebar-navigation">
                     <li class="nav-header">Sidebar</li>
-                    <!--<li class="active"><a href="#">First example</a></li>-->
                     @for(pDocument <- project.getAvailableDocuments()) {
-                        <li><a href="#">@pDocument.getTitle()</a></li>
+                        <li><a href="/project/@project.getId()/document/@pDocument.getId()">@pDocument.getTitle()</a></li>
                     }
                 </ul>
             </div>
-            <!--/.well -->
         </div>
-        <!--/span-->
         <div class="span9">
             <h2>@documentEntry.getTitle()</h2>
 
             <div id="documentation">
              @for(docPart <- documentEntry.getDocumentParts()) {
-                 <li><a href="#">@Html(docPart)</a></li>
+                 <div class="block">@Html(docPart)</div>
              }
              </div>
              
         </div>
-        <!--/span-->
     </div>
-    <!--/row-->
 </div>
 
 

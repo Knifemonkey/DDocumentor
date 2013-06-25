@@ -37,7 +37,7 @@ public class Project {
     }
 
     public DocumentEntry getFirstDocument() {
-        return documentEntries.first();
+        return documentEntries.last();
     }
 
     public void addParsedJavaSource(ParsedJavaSource parsedJavaSource) {

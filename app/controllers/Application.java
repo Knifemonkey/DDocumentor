@@ -15,6 +15,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 
+import static java.util.Arrays.asList;
+
 public class Application extends Controller {
 
     @Inject
@@ -22,15 +24,11 @@ public class Application extends Controller {
     @Inject
     private ProjectFactory projectFactory;
     @Inject
+    private ProjectRepository projectRepository;
+    @Inject
     private DocumentRepository documentRepository;
 
     public Result index() {
-
-//        InputStream inputStream =
-//                Play.application().resourceAsStream("/public/examples/SourceFile.java");
-//
-//        JavaSource javaSource = new FileJavaSourceAdapter(inputStream);
-//        ParsedJavaSource parsedJavaSource = new JavaSourceParser().parseJavaSource(javaSource);
 
         Project project = prepareProject();
 
@@ -42,11 +40,23 @@ public class Application extends Controller {
 
     private Project prepareProject() {
         SortedSet<DocumentEntry> documentEntries = new TreeSet<>();
-
         documentEntries.add(new DocumentEntry("mockName1"));
         documentEntries.add(new DocumentEntry("mockName2"));
 
-        return projectFactory.createNewProject("MyMockProject", documentEntries);
+        Project myMockProject = projectFactory.createNewProject("MyMockProject");
+        ParsedJavaSource source;
+
+        source = new ParsedJavaSource("mockName1", asList("my long markup for project", "part2"));
+        source = documentRepository.save(source);
+        myMockProject.addParsedJavaSource(source);
+
+        source = new ParsedJavaSource("mockName2", asList("part3", "java code"));
+        source = documentRepository.save(source);
+        myMockProject.addParsedJavaSource(source);
+
+        myMockProject = projectRepository.save(myMockProject);
+
+        return myMockProject;
     }
 
 

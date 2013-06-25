@@ -14,7 +14,7 @@ public class ParsedJavaSource {
         this.parts = parts;
     }
 
-    public ParsedJavaSource(SysSourceBuilder b) {
+    ParsedJavaSource(SysSourceBuilder b) {
         this.id = b.id;
         this.parts = b.parts;
         this.title = b.title;

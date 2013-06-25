@@ -1,3 +1,4 @@
+import org.ddocumentor.testing.TestMongoDb;
 import org.junit.*;
 
 import play.mvc.*;
@@ -11,6 +12,7 @@ import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class IntegrationTest {
     private static final String OUTPUT_DOCUMENTATION = "my long markup for project";
+    private static TestMongoDb testMongoDb = new TestMongoDb();
 
     /**
      * add your integration test here
@@ -28,4 +30,13 @@ public class IntegrationTest {
         });
     }
 
+    @BeforeClass
+    public static void beforeAll() throws Exception {
+        testMongoDb.start();
+    }
+
+    @AfterClass
+    public static void afterAll() throws Exception {
+        testMongoDb.stop();
+    }
 }
