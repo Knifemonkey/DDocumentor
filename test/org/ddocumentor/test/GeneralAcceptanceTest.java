@@ -1,6 +1,7 @@
 package org.ddocumentor.test;
 
 import static org.ddocumentor.testing.Asserts.partsHaveHtml;
+import static org.ddocumentor.testing.StubObjects.prepareTestingFile;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -19,7 +20,7 @@ public class GeneralAcceptanceTest {
     @Test
     public void convertSourceCodeToHTML() throws IOException {
 
-        InputStream sourceFile = getSourceFileContents();
+        InputStream sourceFile = prepareTestingFile();
 
         List<JavaSource> javaSources = Lists.newArrayList();
         JavaSource javaSource = JavaSourceFactory.createJavaSource(sourceFile);
@@ -35,9 +36,5 @@ public class GeneralAcceptanceTest {
         assertThat(htmlParsedDocument.getDocumentParts(), partsHaveHtml());
     }
 
-    private InputStream getSourceFileContents() throws IOException {
-        String fileName = "/resources/SourceFile.pjava";
-        InputStream resourceAsStream = GeneralAcceptanceTest.class.getResourceAsStream(fileName);
-        return resourceAsStream;
-    }
+
 }

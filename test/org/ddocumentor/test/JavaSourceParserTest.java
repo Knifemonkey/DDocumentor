@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.Before;
 
 import static org.ddocumentor.testing.StubObjects.asList;
+import static org.ddocumentor.testing.StubObjects.prepareTestingFile;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -93,11 +94,4 @@ public class JavaSourceParserTest {
         assertThat(parsedJavaSource.getTitle(), is("This is document"));
     }
 
-    private InputStream prepareTestingFile() throws IOException {
-        //\DDocumentor\test\resources\SourceFile.java
-        Path sourceFilePath = FileSystems.getDefault()
-                .getPath("test", "resources", "SourceFile.pjava");
-        InputStream inputStream = Files.newInputStream(sourceFilePath.toAbsolutePath());
-        return inputStream;
-    }
 }

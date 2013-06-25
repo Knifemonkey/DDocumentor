@@ -10,6 +10,11 @@ import org.ddocumentor.source.JavaSource;
 import org.ddocumentor.source.ParsedJavaSource;
 import org.ddocumentor.system.MockDocumentRepository;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.SortedSet;
 
@@ -69,5 +74,13 @@ public class StubObjects {
 
 
         return parsedJavaSource;
+    }
+
+    public static InputStream prepareTestingFile() throws IOException {
+        //\DDocumentor\test\resources\SourceFile.java
+        Path sourceFilePath = FileSystems.getDefault()
+                .getPath("test", "resources", "SourceFile.pjava");
+        InputStream inputStream = Files.newInputStream(sourceFilePath.toAbsolutePath());
+        return inputStream;
     }
 }

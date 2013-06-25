@@ -8,8 +8,12 @@ import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TestMongoDb {
+
+    private static Logger logger = Logger.getLogger(TestMongoDb.class.getName());
 
     private MongodExecutable mongodExe;
     private MongodProcess mongod;
@@ -22,20 +26,28 @@ public class TestMongoDb {
             mongod = mongodExe.start();
             return this;
         } catch (IOException e) {
-            if (mongod != null) {
-                mongod.stop();
-            }
-            if (mongodExe != null) {
-                mongodExe.stop();
+            try {
+                if (mongod != null) {
+                    mongod.stop();
+                }
+                if (mongodExe != null) {
+                    mongodExe.stop();
+                }
+            } catch (Exception ex) {
+                logger.log(Level.SEVERE, "exception", ex);
             }
             throw new RuntimeException(e);
         }
     }
 
     public TestMongoDb stop() {
-        if (this.mongod != null) {
-            this.mongod.stop();
-            this.mongodExe.stop();
+        try {
+            if (this.mongod != null) {
+                this.mongod.stop();
+                this.mongodExe.stop();
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "exception", e);
         }
         return this;
     }
