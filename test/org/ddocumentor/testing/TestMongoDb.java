@@ -17,7 +17,8 @@ public class TestMongoDb {
     public TestMongoDb start() {
         try {
             MongodStarter runtime = MongodStarter.getDefaultInstance();
-            mongodExe = runtime.prepare(new MongodConfig(Version.V2_4_3, 27017, Network.localhostIsIPv6()));
+            MongodConfig config = new MongodConfig(Version.V2_4_3, 27017, Network.localhostIsIPv6(), "target/mongodb");
+            mongodExe = runtime.prepare(config);
             mongod = mongodExe.start();
             return this;
         } catch (IOException e) {
